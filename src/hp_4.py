@@ -53,9 +53,9 @@ def fees_report(infile, outfile):
             di={}
             day1=datetime.strptime(item['date_returned'],'%m/%d/%Y')- datetime.strptime(item['date_due'],'%m/%d/%Y') 
             if(day1.days>0):
-                amount=day.days*0.25
+                amount=day1.days*0.25
                 di["patron_id"]=item['patron_id']
-                di["late_fees"]=day.days*0.25
+                di["late_fees"]=day1.days*0.25
                 li.append(di)
 
     with open(outfile,"w", newline="") as file:
