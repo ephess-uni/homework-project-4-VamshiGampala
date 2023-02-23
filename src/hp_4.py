@@ -36,7 +36,7 @@ def add_date_range(values, start_date):
     for i in values:
         telp_list=[]       
         telp_list.append(datetime.strptime(start_date,"%Y-%m-%d")  + timedelta(days=z))
-        telp_list.append()
+        telp_list.append(i)
         lis.append(tuple(telp_list))
         z+=1
     return lis
@@ -45,8 +45,8 @@ def add_date_range(values, start_date):
 def fees_report(infile, outfile):
     """Calculates late fees per patron id and writes a summary report to
     outfile."""
-    infile = get_data_file_path(infile)
-    outfile = get_data_file_path(outfile)
+    infile = get_data_file_path(infile+'.csv')
+    outfile = get_data_file_path(outfile+'.csv')
     
   
     with open(infile) as f:
