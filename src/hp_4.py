@@ -69,8 +69,7 @@ def fees_report(infile, outfile):
 
     with open(outfile,"w", newline="") as file:
         col = ['patron_id', 'late_fees']
-        writer = csv.DictWriter(file, fieldnames=col)
-        writer = DictWriter(file, ["patron_id", "late_fees"])
+        writer = DictWriter(file, fieldnames=col)
         writer.writeheader()
         writer.writerows(li)
 
