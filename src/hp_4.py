@@ -9,8 +9,8 @@ def reformat_dates(old_dates):
     """Accepts a list of date strings in format yyyy-mm-dd, re-formats each
     element to a format dd mmm yyyy--01 Jan 2001."""
     new=[]
-    for dates in old_dates:
-        new.append(datetime.strptime(dates, "%Y-%m-%d").strftime("%d %b %Y"))
+    for d in old_dates:
+        new.append(datetime.strptime(d, "%Y-%m-%d").strftime("%d %b %Y"))
     return new
 
 def date_range(start, n):
