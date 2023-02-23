@@ -28,7 +28,7 @@ def date_range(start, n):
 
 
 def add_date_range(values, start_date):
-    """Adds a daily date range to the list `values` beginning with
+    """Adds a daily date range to the list `values` beginning with 
     `start_date`.  The date, value pairs are returned as tuples
     in the returned list."""
     lis=[]
