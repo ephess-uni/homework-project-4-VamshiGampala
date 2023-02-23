@@ -50,18 +50,15 @@ def fees_report(infile, outfile):
         DictReader_obj = DictReader(f)
         for item in DictReader_obj:
             di={}
-            day=datetime.strptime(item['date_returned'],'%m/%d/%Y')- datetime.strptime(item['date_due'],'%m/%d/%Y') 
-            if(day.days>0):
+            day1=datetime.strptime(item['date_returned'],'%m/%d/%Y')- datetime.strptime(item['date_due'],'%m/%d/%Y') 
+            if(day1.days>0):
                 amount=day.days*0.25
                 di["patron_id"]=item['patron_id']
                 di["late_fees"]=day.days*0.25
                 li.append(di)
-    with open(outfile,"w", newline="", encoding="utf-8-sig") as outfile:
-
-        writer = DictWriter(outfile, ["patron_id", "late_fees"])
-
+    with open(outfile,"w", newline="") as file:
+        writer = DictWriter(file, ["patron_id", "late_fees"])
         writer.writeheader()
-
         writer.writerow(li)
 
 
