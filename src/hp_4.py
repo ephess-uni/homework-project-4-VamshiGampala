@@ -57,6 +57,10 @@ def fees_report(infile, outfile):
                 di["patron_id"]=item['patron_id']
                 di["late_fees"]=day1.days*0.25
                 li.append(di)
+            else:
+                di["patron_id"]=item['patron_id']
+                di["late_fees"]=0.00
+                
 
     with open(outfile,"w", newline="") as file:
         writer = DictWriter(file, ["patron_id", "late_fees"])
