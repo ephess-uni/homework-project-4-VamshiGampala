@@ -72,7 +72,7 @@ def fees_report(infile, outfile):
         tax = [{'patron_id': key, 'late_fees': value} for key, value in aggregated_data.items()]
         for dict in tax:
             for k,v in dict.items():
-                if k="late_fees"
+                if k == "late_fees"
                     if len(str(v).split('.')[-1]) != 2:
                         dict[k] = str(v)+'0'
 
