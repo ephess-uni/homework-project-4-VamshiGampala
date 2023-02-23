@@ -18,11 +18,12 @@ def date_range(start, n):
     a list of of `n` datetime objects starting at `start` where each
     element in the list is one day after the previous."""
     try:
-        if isinstance(start, str) and isinstance(n, int):
-            lis=[]
-            for i in range(0,n):
-                lis.append(datetime.strptime(start,"%Y-%m-%d")  + timedelta(days=i))
-            return lis
+        if isinstance(start, str):
+            if isinstance(n, int):
+                lis=[]
+                for i in range(0,n):
+                    lis.append(datetime.strptime(start,"%Y-%m-%d")  + timedelta(days=i))
+                return lis
     except TypeError:
         pass
 
@@ -53,9 +54,9 @@ def fees_report(infile, outfile):
             di={}
             day1=datetime.strptime(item['date_returned'],'%m/%d/%Y')- datetime.strptime(item['date_due'],'%m/%d/%Y') 
             if(day1.days>0):
-                amount=day1.days*0.25
+        
                 di["patron_id"]=item['patron_id']
-                di["late_fees"]=str(round(day1.days*0.25, 2))
+                di["late_fees"]=str(round(day1.days*0.25, 3))
                 li.append(di)
             else:
                 di["patron_id"]=item['patron_id']
