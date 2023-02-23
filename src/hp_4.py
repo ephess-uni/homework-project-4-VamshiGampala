@@ -8,27 +8,61 @@ from collections import defaultdict
 def reformat_dates(old_dates):
     """Accepts a list of date strings in format yyyy-mm-dd, re-formats each
     element to a format dd mmm yyyy--01 Jan 2001."""
-    pass
-
+    new=[]
+    for dates in old_dates:
+        new.append(datetime.strptime(dates, "%Y-%m-%d").strftime("%d %b %Y"))
+    return new
 
 def date_range(start, n):
     """For input date string `start`, with format 'yyyy-mm-dd', returns
     a list of of `n` datetime objects starting at `start` where each
     element in the list is one day after the previous."""
-    pass
+    try:
+        if isinstance(start, str) and isinstance(n, int):
+            lis=[]
+            for i in range(0,n):
+                lis.append(datetime.strptime(start,"%Y-%m-%d")  + timedelta(days=i))
+            return lis
+    except TypeError:
+        pass
 
 
 def add_date_range(values, start_date):
     """Adds a daily date range to the list `values` beginning with
     `start_date`.  The date, value pairs are returned as tuples
     in the returned list."""
-    pass
+    lis=[]
+    z=0
+    for i in values:
+        a=[]       
+        a.append(datetime.strptime(start_date,"%Y-%m-%d")  + timedelta(days=z))
+        a.append()
+        lis.append(tuple(a))
+        z+=1
+    return lis
 
 
 def fees_report(infile, outfile):
     """Calculates late fees per patron id and writes a summary report to
     outfile."""
-    pass
+    with open(infile) as f:
+        li=[]
+        DictReader_obj = DictReader(f)
+        for item in DictReader_obj:
+            di={}
+            day=datetime.strptime(item['date_returned'],'%m/%d/%Y')- datetime.strptime(item['date_due'],'%m/%d/%Y') 
+            if(day.days>0):
+                amount=day.days*0.25
+                di["patron_id"]=item['patron_id']
+                di["late_fees"]=day.days*0.25
+                li.append(di)
+    with open('output.csv',"w", newline="", encoding="utf-8-sig") as outfile:
+
+        writer = DictWriter(outfile, ["patron_id", "late_fees"])
+
+        writer.writeheader()
+
+        writer.writerow(li)
 
 
 # The following main selection block will only run when you choose
