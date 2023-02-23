@@ -56,18 +56,29 @@ def fees_report(infile, outfile):
             day1=datetime.strptime(item['date_returned'],'%m/%d/%Y')- datetime.strptime(item['date_due'],'%m/%d/%Y') 
             if(day1.days>0):
                 di["patron_id"]=item['patron_id']
-                di["late_fees"]=str(round(day1.days*0.25, 3))
+                di["late_fees"]=round(day1.days*0.25, 2)
                 li.append(di)
             else:
                 di["patron_id"]=item['patron_id']
                 di["late_fees"]='0.00'
                 li.append(di)
+        aggregated_data = {}
+
+        for dictionary in li:
+            key = (dictionary['patron_id'])
+
+            aggregated_data[key] = aggregated_data.get(key, 0) + dictionary['late_fees']
+
+        tax = [{'patron_id': key, 'late_fees': value} for key, value in aggregated_data.items()]
+
+    
+
 
     with open(outfile,"w", newline="") as file:
         col = ['patron_id', 'late_fees']
         writer = DictWriter(file, fieldnames=col)
         writer.writeheader()
-        writer.writerows(li)
+        writer.writerows(tax)
 
 
 # The following main selection block will only run when you choose
