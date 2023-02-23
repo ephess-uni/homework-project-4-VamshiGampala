@@ -20,6 +20,7 @@ def date_range(start, n):
     try:
         if isinstance(start, str):
             if isinstance(n, int):
+                print(type(start),type(n),"kkkkkkkkkkkkkkkkkk")
                 lis=[]
                 for i in range(0,n):
                     lis.append(datetime.strptime(start,"%Y-%m-%d")  + timedelta(days=i))
