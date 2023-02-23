@@ -20,7 +20,7 @@ def date_range(start, n):
     
     if not isinstance(start, str):
         raise TypeError
-    elif not isinstance(start, str):
+    elif not isinstance(n, int):
         raise TypeError
     else:
         lis=[]
