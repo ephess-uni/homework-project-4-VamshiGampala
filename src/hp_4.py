@@ -70,6 +70,7 @@ def fees_report(infile, outfile):
             aggregated_data[key] = aggregated_data.get(key, 0) + dictionary['late_fees']
 
         tax = [{'patron_id': key, 'late_fees': value} for key, value in aggregated_data.items()]
+        in_float = {k: i.replace(0, '0.00') for k, i in tax.items()}
 
     
 
@@ -78,7 +79,7 @@ def fees_report(infile, outfile):
         col = ['patron_id', 'late_fees']
         writer = DictWriter(file, fieldnames=col)
         writer.writeheader()
-        writer.writerows(tax)
+        writer.writerows(in_float)
 
 
 # The following main selection block will only run when you choose
