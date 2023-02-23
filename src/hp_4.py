@@ -23,8 +23,8 @@ def date_range(start, n):
             for i in range(0,n):
                 lis.append(datetime.strptime(start,"%Y-%m-%d")  + timedelta(days=i))
             return lis
-    except:
-        TypeError
+    except TypeError:
+        pass
 
 
 def add_date_range(values, start_date):
@@ -45,9 +45,6 @@ def add_date_range(values, start_date):
 def fees_report(infile, outfile):
     """Calculates late fees per patron id and writes a summary report to
     outfile."""
-    infile = get_data_file_path(infile)
-    outfile = get_data_file_path(outfile)
-    
   
     with open(infile) as f:
         li=[]
