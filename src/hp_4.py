@@ -58,7 +58,6 @@ def fees_report(infile, outfile):
                 di["patron_id"]=item['patron_id']
                 di["late_fees"]=str(round(day1.days*0.25, 3))
                 li.append(di)
-                a.append(item['patron_id'])
             else:
                 di["patron_id"]=item['patron_id']
                 di["late_fees"]='0.00'
