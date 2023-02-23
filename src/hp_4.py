@@ -50,25 +50,29 @@ def fees_report(infile, outfile):
   
     with open(infile) as f:
         li=[]
+        a=[]
         DictReader_obj = DictReader(f)
         for item in DictReader_obj:
             di={}
             day1=datetime.strptime(item['date_returned'],'%m/%d/%Y')- datetime.strptime(item['date_due'],'%m/%d/%Y') 
-            if(day1.days>0):
+            if (item['patron_id'] not in a):
         
-                di["patron_id"]=item['patron_id']
-                di["late_fees"]=str(round(day1.days*0.25, 3))
-                li.append(di)
-            else:
-                di["patron_id"]=item['patron_id']
-                di["late_fees"]='0.00'
-                li.append(di)
-                
+                if(day1.days>0):
+                    di["patron_id"]=item['patron_id']
+                    di["late_fees"]=str(round(day1.days*0.25, 3))
+                    li.append(di)
+                    a.append(item['patron_id'])
+                else:
+                    di["patron_id"]=item['patron_id']
+                    di["late_fees"]='0.00'
+                    li.append(di)
 
     with open(outfile,"w", newline="") as file:
+        col = ['patron_id', 'late_fees']
+        writer = csv.DictWriter(file, fieldnames=col)
         writer = DictWriter(file, ["patron_id", "late_fees"])
         writer.writeheader()
-        writer.writerow(li)
+        writer.writerows(li)
 
 
 # The following main selection block will only run when you choose
