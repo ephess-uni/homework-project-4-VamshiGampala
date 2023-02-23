@@ -45,7 +45,8 @@ def add_date_range(values, start_date):
 def fees_report(infile, outfile):
     """Calculates late fees per patron id and writes a summary report to
     outfile."""
-    with open(infile) as f:
+    c=get_data_file_path(infile)
+    with open(c) as f:
         li=[]
         DictReader_obj = DictReader(f)
         for item in DictReader_obj:
@@ -56,7 +57,8 @@ def fees_report(infile, outfile):
                 di["patron_id"]=item['patron_id']
                 di["late_fees"]=day.days*0.25
                 li.append(di)
-    with open(outfile,"w", newline="") as file:
+    d=get_data_file_path(outfile)
+    with open(d,"w", newline="") as file:
         writer = DictWriter(file, ["patron_id", "late_fees"])
         writer.writeheader()
         writer.writerow(li)
