@@ -60,7 +60,7 @@ def fees_report(infile, outfile):
                 li.append(di)
             else:
                 di["patron_id"]=item['patron_id']
-                di["late_fees"]='0.00'
+                di["late_fees"]=0
                 li.append(di)
         aggregated_data = {}
 
