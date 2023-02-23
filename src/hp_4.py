@@ -12,7 +12,7 @@ def reformat_dates(old_dates):
     for d in old_dates:
         new.append(datetime.strptime(d, "%Y-%m-%d").strftime("%d %b %Y"))
     return new
-print(reformat_dates(['2000-01-01', '2000-01-02', '2000-01-03']),'llllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll')
+
 def date_range(start, n):
     """For input date string `start`, with format 'yyyy-mm-dd', returns
     a list of of `n` datetime objects starting at `start` where each
@@ -45,8 +45,8 @@ def add_date_range(values, start_date):
 def fees_report(infile, outfile):
     """Calculates late fees per patron id and writes a summary report to
     outfile."""
-    c=get_data_file_path(infile)
-    with open(c) as f:
+  
+    with open(infile) as f:
         li=[]
         DictReader_obj = DictReader(f)
         for item in DictReader_obj:
@@ -57,8 +57,8 @@ def fees_report(infile, outfile):
                 di["patron_id"]=item['patron_id']
                 di["late_fees"]=day.days*0.25
                 li.append(di)
-    d=get_data_file_path(outfile)
-    with open(d,"w", newline="") as file:
+
+    with open(outfile,"w", newline="") as file:
         writer = DictWriter(file, ["patron_id", "late_fees"])
         writer.writeheader()
         writer.writerow(li)
