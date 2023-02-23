@@ -56,7 +56,7 @@ def fees_report(infile, outfile):
                 di["patron_id"]=item['patron_id']
                 di["late_fees"]=day.days*0.25
                 li.append(di)
-    with open('output.csv',"w", newline="", encoding="utf-8-sig") as outfile:
+    with open(outfile,"w", newline="", encoding="utf-8-sig") as outfile:
 
         writer = DictWriter(outfile, ["patron_id", "late_fees"])
 
