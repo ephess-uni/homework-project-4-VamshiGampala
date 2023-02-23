@@ -23,8 +23,8 @@ def date_range(start, n):
             for i in range(0,n):
                 lis.append(datetime.strptime(start,"%Y-%m-%d")  + timedelta(days=i))
             return lis
-    except TypeError:
-        pass
+    except:
+        TypeError
 
 
 def add_date_range(values, start_date):
