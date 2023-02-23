@@ -45,8 +45,8 @@ def add_date_range(values, start_date):
 def fees_report(infile, outfile):
     """Calculates late fees per patron id and writes a summary report to
     outfile."""
-    infile = get_data_file_path(infile+'.csv')
-    outfile = get_data_file_path(outfile+'.csv')
+    infile = get_data_file_path(infile)
+    outfile = get_data_file_path(outfile)
     
   
     with open(infile) as f:
@@ -63,6 +63,7 @@ def fees_report(infile, outfile):
             else:
                 di["patron_id"]=item['patron_id']
                 di["late_fees"]='0.00'
+                li.append(di)
                 
 
     with open(outfile,"w", newline="") as file:
