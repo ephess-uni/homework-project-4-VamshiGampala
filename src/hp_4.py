@@ -12,7 +12,7 @@ def reformat_dates(old_dates):
     for d in old_dates:
         new.append(datetime.strptime(d, "%Y-%m-%d").strftime("%d %b %Y"))
     return new
-
+print(reformat_dates(['2000-01-01', '2000-01-02', '2000-01-03']),llllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll)
 def date_range(start, n):
     """For input date string `start`, with format 'yyyy-mm-dd', returns
     a list of of `n` datetime objects starting at `start` where each
