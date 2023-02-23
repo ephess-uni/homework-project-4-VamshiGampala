@@ -55,11 +55,11 @@ def fees_report(infile, outfile):
             if(day1.days>0):
                 amount=day1.days*0.25
                 di["patron_id"]=item['patron_id']
-                di["late_fees"]=day1.days*0.25
+                di["late_fees"]=str(round(day1.days*0.25, 2))
                 li.append(di)
             else:
                 di["patron_id"]=item['patron_id']
-                di["late_fees"]=0.00
+                di["late_fees"]='0.00'
                 
 
     with open(outfile,"w", newline="") as file:
